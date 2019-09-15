@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TextInput,
+  SafeAreaView,
+  Platform,
+  StatusBar
+} from 'react-native';
 import Svg, { Image, Circle, ClipPath } from 'react-native-svg';
 import Animated, { Easing } from 'react-native-reanimated';
 import { TapGestureHandler, State } from 'react-native-gesture-handler';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
+// TODO Find better way to handle android notch
+const height =
+  Platform.OS === 'android'
+    ? Dimensions.get('screen').height - StatusBar.currentHeight
+    : Dimensions.get('window').height;
 
 const {
   Value,
